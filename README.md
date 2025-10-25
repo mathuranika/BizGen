@@ -1,40 +1,232 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# BizGen 🚀
 
-## Getting Started
+**AI-Powered Business Idea Generator for the AI Agent Economy**
 
-First, run the development server:
+BizGen is an innovative web application that harnesses the power of artificial intelligence to generate creative and actionable business ideas specifically tailored for the emerging AI agent economy. Built with modern web technologies and secure authentication, it provides users with instant, AI-generated business concepts formatted with clear headings, subheadings, and bullet points.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 🌐 Live Demo
+
+The application is deployed and accessible at:
+**[https://bizgen-1dqntzasr-mathuranikas-projects.vercel.app](https://bizgen-1dqntzasr-mathuranikas-projects.vercel.app)**
+
+## ✨ Features
+
+- **AI-Powered Generation**: Leverages OpenAI's GPT models to generate innovative business ideas focused on AI agents
+- **Real-time Streaming**: Server-Sent Events (SSE) provide a smooth, real-time streaming experience as ideas are generated
+- **Secure Authentication**: Integrated with Clerk for robust user authentication and authorization
+- **Beautiful UI**: Modern, responsive design with gradient backgrounds and smooth animations
+- **Dark Mode Support**: Automatically adapts to user's system preferences
+- **Markdown Rendering**: Ideas are formatted with Markdown for clear, structured presentation
+
+## 🛠️ Tech Stack
+
+### Frontend
+- **[Next.js 15](https://nextjs.org/)** - React framework with Pages Router
+- **[React 19](https://react.dev/)** - UI library
+- **[TypeScript](https://www.typescriptlang.org/)** - Type-safe JavaScript
+- **[Tailwind CSS v4](https://tailwindcss.com/)** - Utility-first CSS framework
+- **[Clerk](https://clerk.com/)** - Authentication and user management
+- **[React Markdown](https://github.com/remarkjs/react-markdown)** - Markdown rendering with GFM support
+
+### Backend
+- **[FastAPI](https://fastapi.tiangolo.com/)** - Modern Python web framework
+- **[OpenAI API](https://openai.com/api/)** - AI model integration
+- **[Uvicorn](https://www.uvicorn.org/)** - ASGI server
+- **[fastapi-clerk-auth](https://github.com/pypi/fastapi-clerk-auth)** - Clerk authentication for FastAPI
+
+## 📋 Prerequisites
+
+Before you begin, ensure you have the following installed:
+- **Node.js** (v18 or higher)
+- **npm** or **yarn** or **pnpm**
+- **Python** (v3.8 or higher)
+- **pip** (Python package manager)
+
+## 🚀 Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/mathuranika/BizGen.git
+   cd BizGen
+   ```
+
+2. **Install Node.js dependencies**
+   ```bash
+   npm install
+   # or
+   yarn install
+   # or
+   pnpm install
+   ```
+
+3. **Install Python dependencies**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+## 🔑 Environment Variables
+
+Create a `.env.local` file in the root directory and add the following environment variables:
+
+### Required for Frontend (Clerk Authentication)
+```env
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
+CLERK_SECRET_KEY=your_clerk_secret_key
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Required for Backend (API)
+```env
+CLERK_JWKS_URL=your_clerk_jwks_url
+OPENAI_API_KEY=your_openai_api_key
+```
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+### How to get these values:
+- **Clerk Keys**: Sign up at [clerk.com](https://clerk.com), create an application, and get your keys from the dashboard
+- **CLERK_JWKS_URL**: Found in your Clerk dashboard under API Keys (typically `https://your-domain.clerk.accounts.dev/.well-known/jwks.json`)
+- **OPENAI_API_KEY**: Get your API key from [OpenAI Platform](https://platform.openai.com/api-keys)
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## 💻 Running the Application
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+### Development Mode
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. **Start the Next.js development server**
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   # or
+   pnpm dev
+   ```
 
-## Learn More
+2. **Start the FastAPI backend server** (in a separate terminal)
+   ```bash
+   cd api
+   uvicorn index:app --reload
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+3. **Open your browser**
+   Navigate to [http://localhost:3000](http://localhost:3000)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+### Production Build
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. **Build the Next.js application**
+   ```bash
+   npm run build
+   npm run start
+   ```
 
-## Deploy on Vercel
+2. **Run the FastAPI server**
+   ```bash
+   cd api
+   uvicorn index:app --host 0.0.0.0 --port 8000
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📁 Project Structure
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+```
+BizGen/
+├── api/                      # Backend FastAPI application
+│   └── index.py             # Main API endpoint with SSE streaming
+├── pages/                   # Next.js pages
+│   ├── _app.tsx            # App wrapper with Clerk provider
+│   ├── _document.tsx       # Custom document structure
+│   ├── index.tsx           # Landing page
+│   └── product.tsx         # Main app page with idea generator
+├── public/                  # Static assets
+│   ├── favicon.ico
+│   └── *.svg               # Various SVG icons
+├── styles/                  # Global styles
+│   └── globals.css
+├── package.json            # Node.js dependencies
+├── requirements.txt        # Python dependencies
+├── next.config.ts          # Next.js configuration
+├── tsconfig.json           # TypeScript configuration
+├── tailwind.config.js      # Tailwind CSS configuration
+└── eslint.config.mjs       # ESLint configuration
+```
+
+## 🔌 API Endpoints
+
+### `GET /api`
+Generates a new business idea for AI agents using OpenAI's GPT model.
+
+**Authentication**: Required (Clerk JWT token)
+
+**Response**: Server-Sent Events (SSE) stream
+
+**Headers**:
+```
+Authorization: Bearer <clerk_jwt_token>
+```
+
+**Response Format**:
+```
+data: Generated
+data:  
+data: text
+data:  
+data: chunk
+```
+
+## 🌍 Deployment
+
+This application is deployed on [Vercel](https://vercel.com). To deploy your own instance:
+
+1. **Fork this repository**
+
+2. **Connect to Vercel**
+   - Go to [vercel.com](https://vercel.com)
+   - Import your forked repository
+   - Configure environment variables in the Vercel dashboard
+
+3. **Set up the Python API**
+   - Vercel automatically detects the `api/` directory
+   - Ensure all environment variables are set
+
+4. **Deploy**
+   - Vercel will automatically deploy on every push to main branch
+
+### Environment Variables on Vercel
+Add all the environment variables mentioned in the [Environment Variables](#-environment-variables) section to your Vercel project settings.
+
+## 🧪 Linting
+
+Run ESLint to check code quality:
+```bash
+npm run lint
+```
+
+## 🤝 Contributing
+
+Contributions are welcome! Here's how you can help:
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+### Development Guidelines
+- Follow the existing code style
+- Write meaningful commit messages
+- Test your changes thoroughly
+- Update documentation as needed
+
+## 📄 License
+
+This project is available for use under standard terms. Please contact the repository owner for specific licensing information.
+
+## 🙏 Acknowledgments
+
+- Built with [Next.js](https://nextjs.org/)
+- Powered by [OpenAI](https://openai.com/)
+- Authentication by [Clerk](https://clerk.com/)
+- Deployed on [Vercel](https://vercel.com/)
+
+## 📧 Contact
+
+For questions or feedback, please open an issue in the GitHub repository.
+
+---
+
+**Made with ❤️ for the AI Agent Economy**
