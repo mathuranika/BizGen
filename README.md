@@ -218,17 +218,3 @@ Contributions are welcome! Here's how you can help:
 
 This project is available for use under standard terms. Please contact the repository owner for specific licensing information.
 
-## 🙏 Acknowledgments
-
-- Built with [Next.js](https://nextjs.org/)
-- Powered by [OpenAI](https://openai.com/)
-- Authentication by [Clerk](https://clerk.com/)
-- Deployed on [Vercel](https://vercel.com/)
-
-## 📧 Contact
-
-For questions or feedback, please open an issue in the GitHub repository.
-
----
-
-**Made with ❤️ for the AI Agent Economy**
