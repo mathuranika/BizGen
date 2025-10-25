@@ -6,8 +6,10 @@ BizGen is an innovative web application that harnesses the power of artificial i
 
 ## 🌐 Live Demo
 
-The application is deployed and accessible at:
+The application is currently deployed and accessible at:
 **[https://bizgen-1dqntzasr-mathuranikas-projects.vercel.app](https://bizgen-1dqntzasr-mathuranikas-projects.vercel.app)**
+
+> **Note:** This is a Vercel deployment URL. For production use, consider setting up a custom domain.
 
 ## ✨ Features
 
@@ -32,7 +34,7 @@ The application is deployed and accessible at:
 - **[FastAPI](https://fastapi.tiangolo.com/)** - Modern Python web framework
 - **[OpenAI API](https://openai.com/api/)** - AI model integration
 - **[Uvicorn](https://www.uvicorn.org/)** - ASGI server
-- **[fastapi-clerk-auth](https://github.com/pypi/fastapi-clerk-auth)** - Clerk authentication for FastAPI
+- **[fastapi-clerk-auth](https://pypi.org/project/fastapi-clerk-auth/)** - Clerk authentication for FastAPI
 
 ## 📋 Prerequisites
 
@@ -82,7 +84,7 @@ OPENAI_API_KEY=your_openai_api_key
 
 ### How to get these values:
 - **Clerk Keys**: Sign up at [clerk.com](https://clerk.com), create an application, and get your keys from the dashboard
-- **CLERK_JWKS_URL**: Found in your Clerk dashboard under API Keys (typically `https://your-domain.clerk.accounts.dev/.well-known/jwks.json`)
+- **CLERK_JWKS_URL**: Found in your Clerk dashboard under API Keys. The format is typically `https://<your-clerk-domain>.clerk.accounts.dev/.well-known/jwks.json` where `<your-clerk-domain>` is your specific Clerk instance domain shown in your dashboard
 - **OPENAI_API_KEY**: Get your API key from [OpenAI Platform](https://platform.openai.com/api-keys)
 
 ## 💻 Running the Application
